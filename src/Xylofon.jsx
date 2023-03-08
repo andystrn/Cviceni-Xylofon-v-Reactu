@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { zahraj } from './zahraj'
+import Button from './components/Button';
 
 // 1. Nahraď jednotlivé tlačítka/kameny za výpis pole pomocí `.map`. Použij následující pole `kameny`.
 const kameny = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
@@ -13,19 +14,11 @@ const kameny = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 export const Xylofon = () => {
 	const [nadpis, setNadpis] = useState('Xylofon');
 
-	const xylofonEvent = (e) => {
-		const ton = e.target.textContent;
-	
-		setNadpis(ton); 
-		zahraj(ton);
-	};	
-
 	return (
 		<>
 			<h1>{nadpis}</h1>
 			<div className="xylofon">
-				{kameny.map((kamen) =>
-					<button onClick={(e) => xylofonEvent(e)} key={kamen} type="button" className="kamen">{kamen}</button>)}
+				{kameny.map((kamen) => <Button funkce={setNadpis} key={kamen} nazevTonu={kamen} />)}
 			</div>
 		</>
 	)
